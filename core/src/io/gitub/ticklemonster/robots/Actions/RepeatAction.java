@@ -1,6 +1,4 @@
-package io.gitub.ticklemonster.robots;
-
-import com.badlogic.gdx.Gdx;
+package io.gitub.ticklemonster.robots.Actions;
 
 public class RepeatAction implements Action {
   Action action;

@@ -1,9 +1,7 @@
-package io.gitub.ticklemonster.robots;
+package io.gitub.ticklemonster.robots.Actions;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.MathUtils;
 
 public class DisposeTexture implements Action {
   float duration, timer;

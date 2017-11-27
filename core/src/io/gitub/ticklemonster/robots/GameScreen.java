@@ -1,7 +1,5 @@
 package io.gitub.ticklemonster.robots;
 
-import java.util.Iterator;
-
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -9,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
@@ -23,9 +20,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.Interpolation;
 
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Input.Keys;
 
 // TODO: Add move timer (as "difficult" variant?)
@@ -51,12 +46,12 @@ public class GameScreen implements Screen {
 	static final float LEVEL_UP_WAIT_TIME = 3.0f;
 	static final float ANIMATION_TIME = 0.33f;
 	static final float TILE_SIZE = 32f;
-	static enum GameState {
+	enum GameState {
 		START_LEVEL, CLEANUP_SPLATTERS, SPAWN_PLAYER, SPAWN_ROBOTS,
 		PLAYER_TURN, TELEPORT, PLAYER_MOVED, AFTER_PLAYER_MOVE,
 		ROBOT_TURN, AFTER_ROBOT_MOVE,
 		LEVEL_UP, DEATH, GAME_OVER
-	};
+	}
 
 	// TODO: Move these "constants" to preferences
 	// 	and add a preference panel
@@ -253,7 +248,7 @@ public class GameScreen implements Screen {
 				touched = false;
 				touchTeleport = false;
 				return true;
-			};
+			}
 
 			// set touchTeleport if a touch started over the teleport label
 			Vector3 touchPos = new Vector3(x,y,0);
@@ -291,6 +286,7 @@ public class GameScreen implements Screen {
 			return true; // return true to indicate the event was handled
 		}
 
+		@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 		private boolean canAcceptInput() {
 			return (gameState == GameState.PLAYER_TURN); //&& animations.size == 0);
 		}
@@ -356,7 +352,7 @@ public class GameScreen implements Screen {
 		public boolean keyTyped(char character) { return false;	}
 
 
-	};
+	}
 
 
 	//
@@ -418,9 +414,9 @@ public class GameScreen implements Screen {
 			// get a random location
 			dest.set(randomLocation());
 			isValid = (
-				overlapsAny(dest,robots) == false
-				&& overlapsAny(dest,splatters) == false
-				&& overlaps(player,dest) == false
+					!overlapsAny(dest, robots)
+				&& !overlapsAny(dest, splatters)
+				&& !overlaps(player, dest)
 			);
 		}
 
@@ -993,7 +989,7 @@ public class GameScreen implements Screen {
 					)
 				);
 
-				long highscore = game.prefs.getLong("highscore",0l);
+				long highscore = game.prefs.getLong("highscore", 0L);
 				if( scoreManager.getScore() > highscore ) {
 					game.prefs.putLong("highscore",scoreManager.getScore());
 				}

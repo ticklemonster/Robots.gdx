@@ -13,9 +13,9 @@ import com.badlogic.gdx.utils.ObjectMap;
 
 
 public class RobotsGame extends Game {
-	public static enum Screens {
+	public enum Screens {
 		MENU, SETTINGS, GAME, EXIT
-	};
+	}
 
 	static final String PLAYER_SPRITE_NAME = "human";
 	static final String ROBOT_SPRITE_NAME = "robot";
@@ -58,6 +58,7 @@ public class RobotsGame extends Game {
 		this.setScreen( RobotsGame.Screens.MENU );
 	}
 
+	@SuppressWarnings("EmptyMethod")
 	public void render() {
 		super.render(); //important!
 	}

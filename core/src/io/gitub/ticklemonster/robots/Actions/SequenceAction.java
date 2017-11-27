@@ -1,6 +1,5 @@
-package io.gitub.ticklemonster.robots;
+package io.gitub.ticklemonster.robots.Actions;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
 public class SequenceAction implements Action{

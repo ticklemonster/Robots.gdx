@@ -1,7 +1,7 @@
-package io.gitub.ticklemonster.robots;
+package io.gitub.ticklemonster.robots.Actions;
 
 public interface Action {
-  public void update(float deltaTime);
-  public boolean isComplete();
-  public void reset();
+  void update(float deltaTime);
+  boolean isComplete();
+  void reset();
 }

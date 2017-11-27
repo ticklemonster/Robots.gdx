@@ -1,27 +1,28 @@
 package io.gitub.ticklemonster.robots;
 
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
-import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
 
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Input.Keys;
+import io.gitub.ticklemonster.robots.Actions.*;
 
 // TODO: Add move timer (as "difficult" variant?)
 
@@ -992,6 +993,7 @@ public class GameScreen implements Screen {
 				long highscore = game.prefs.getLong("highscore", 0L);
 				if( scoreManager.getScore() > highscore ) {
 					game.prefs.putLong("highscore",scoreManager.getScore());
+                    game.prefs.flush();
 				}
 
 				nextState = GameState.GAME_OVER;
@@ -1085,6 +1087,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void hide() {
+        game.prefs.flush();
 	}
 
 	@Override
